@@ -1,0 +1,145 @@
+/* ========== CSS Reset (minimal) ========== */
+*, *::before, *::after { box-sizing: border-box; }
+html:focus-within { scroll-behavior: smooth; }
+body, h1, h2, h3, p, ul, li, figure { margin: 0; padding: 0; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+a { text-decoration: none; }
+
+/* ========== Theme ========== */
+:root{
+  --bg: #0f172a;           /* slate-900 */
+  --panel: #111827;        /* gray-900 */
+  --elev: #0b1220;         /* slightly darker */
+  --text: #f8fafc;         /* slate-50 */
+  --muted: #cbd5e1;        /* slate-300 */
+  --brand: #60a5fa;        /* blue-400 */
+  --brand-weak:#93c5fd;
+  --chip-bg:#1f2937;       /* gray-800 */
+  --border:#1f2937;
+  --shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#ffffff;
+    --panel:#f8fafc;
+    --elev:#ffffff;
+    --text:#0f172a;
+    --muted:#475569;
+    --brand:#2563eb;
+    --brand-weak:#60a5fa;
+    --chip-bg:#e5e7eb;
+    --border:#e5e7eb;
+    --shadow: 0 10px 25px rgba(0,0,0,.08);
+  }
+}
+
+/* ========== Base ========== */
+body{
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 10% 0%, var(--panel), var(--bg));
+}
+
+.wrap{
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+.skip-link{
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus{
+  left: 1rem; top: 1rem; width: auto; height: auto;
+  background: var(--brand); color: #000; padding: .5rem .75rem; border-radius: .4rem;
+}
+
+/* ========== Header / Hero ========== */
+.site-header{
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--panel), transparent 60%);
+}
+
+.hero{
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1.4fr 1fr;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+}
+@media (max-width: 800px){ .hero{ grid-template-columns: 1fr; } }
+
+h1{ font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em; }
+.tagline{ color: var(--brand-weak); margin-top: .35rem; }
+.summary{ margin-top: .75rem; color: var(--muted); }
+
+.contact-list{ margin-top: .5rem; color: var(--muted); }
+.contact-list a{ color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+.cta-row{ margin-top: 1rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+.btn{
+  display: inline-block;
+  background: var(--brand); color: #081227;
+  padding: .65rem 1rem; border-radius: .55rem; font-weight: 600;
+  box-shadow: var(--shadow);
+}
+.btn--ghost{
+  background: transparent; color: var(--text); border: 1px solid var(--border);
+}
+.btn--small{ padding: .45rem .75rem; font-size: .9rem; }
+
+/* ========== Sections ========== */
+.section{ padding: clamp(2rem, 5vw, 3rem) 0; }
+.section h2{
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+/* Chips (skills) */
+.chip-list{ display:flex; gap:.5rem; flex-wrap:wrap; }
+.chip{
+  background: var(--chip-bg); border: 1px solid var(--border); color: var(--text);
+  padding:.4rem .6rem; border-radius: 999px; white-space: nowrap;
+}
+
+/* Cards grid */
+.grid{
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(12, 1fr);
+}
+.card{
+  grid-column: span 12;
+  background: linear-gradient(180deg, var(--elev), var(--panel));
+  border: 1px solid var(--border);
+  border-radius: .8rem;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+@media (min-width: 720px){
+  .card{ grid-column: span 6; }
+}
+@media (min-width: 1024px){
+  .card{ grid-column: span 4; }
+}
+.card__header{ margin-bottom: .5rem; }
+.card__title{ font-size: 1.1rem; }
+.card__tags{ color: var(--muted); font-size: .95rem; }
+.card__body{ margin: .35rem 0 .5rem; color: var(--text); }
+.card__bullets{ margin: .25rem 0 .75rem; padding-left: 1rem; list-style: disc; }
+.card__links{ display:flex; gap:.5rem; flex-wrap:wrap; }
+
+/* Lists */
+.list{ display: grid; gap: .5rem; }
+.list a{ color: var(--brand-weak); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Footer */
+.site-footer{
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, transparent, var(--panel));
+  padding: 2rem 0;
+  color: var(--muted);
+  text-align: center;
+}
